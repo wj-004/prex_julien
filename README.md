@@ -1,7 +1,7 @@
 # Challenge PREX Julien Wolin
 
 ## Acerca del proyecto
-El presente proyecto consiste en una API REST que implementa los siguientes servicios:
+El presente proyecto consiste en una API REST que consume un servicio de terceros ( [GIPHY](https://www.giphy.com/) ) e implementa los siguientes servicios:
 - Login
 - Buscar GIFS   
 - Buscar GIF por ID
@@ -19,15 +19,29 @@ Además, proporciona la documentación necesaria para la instalación, preparaci
 
 
 
-
-## Guía de Instalación
+## Guía de Instalación y Configuración
 ```bash
-git clone https://github.com/tuusuario/tuprojecto.git
+git clone hhttps://github.com/wj-004/prex_julien.git
 cd prex_julien
-
 ```
-## Configuración
-Levantar el servicio de Laravel Sail:
+Instalar las dependencias del proyecto:
+```bash
+php artisan somposer install
+```
+
+Crear el archivo .env del proyecto a partir del archivo de ejemplo .env.example. y completar las variables: 
+- GIPHY_API_KEY: necesaria para consumir los servicios de GIPHY 
+- PASSPORT_TOKEN_EXPIRATION: Establece el tiempo de expiración del token (en minutos).
+- PASSPORT_REFRESH_TOKEN_EXPIRATION: Establece cada cuantos días expira el refresh token.
+```bash
+GIPHY_API_KEY=""
+PASSPORT_TOKEN_EXPIRATION=30
+PASSPORT_REFRESH_TOKEN_EXPIRATION=7
+``` 
+
+
+Levantar el servicio de Laravel Sail:  
+Utilizar el paquete oficial Laravel Sail para manejo de Docker. Para ello, si no tiene configurada la opción "sail", utilizar "/vendor/bin/sail"  
 ```bash
 sail up
 ```
@@ -115,3 +129,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+```
+@startuml
+:Usuario: --> (Login)
+:Usuario: --> (Buscar GIFs)
+:Usuario: --> (Buscar GIF por ID)
+:Usuario: --> (Guardar GIF favorito)
+@enduml
