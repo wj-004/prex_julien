@@ -11,7 +11,7 @@ Además, proporciona la documentación necesaria para la instalación, preparaci
 
 ## Tecnologías empleadas
 
-- [PHP 8.2(https://www.php.net/downloads.php#v8.2.10).
+- [PHP 8.2](https://www.php.net/downloads.php#v8.2.10).
 - [Laravel 10](https://laravel.com/).
 - [MySQL](https://www.mysql.com/).
 - [UML](https://www.uml.org/).
