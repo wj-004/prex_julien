@@ -24,7 +24,7 @@ Además, proporciona la documentación necesaria para la instalación, preparaci
 
 ### 1. Clonar el repositorio:
 ```bash
-git clone hhttps://github.com/wj-004/prex_julien.git
+git clone https://github.com/wj-004/prex_julien.git
 cd prex_julien
 ```
 
