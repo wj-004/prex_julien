@@ -19,6 +19,7 @@ class GifBookmarked
      */
     public function __construct(
         public BookmarkRequest $request,
+        public int $statusHTTP
     ) {
     }
 

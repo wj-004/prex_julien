@@ -8,8 +8,7 @@ class LogGifBookmarked extends LogGifBase
 {
     protected function prepareRequestData(object $event): array
     {
-        $requestData = clone $event->request;
-        unset($requestData->ip_client);
+        $requestData = $event->requestDTO;
         return (array) $requestData;
     }
 

@@ -15,7 +15,7 @@ class GifApiRequest extends Model
         'user_id',
         'api_service_type_id',
         'request_data',
-        'response_status',
+        'response_http',
         'response_data',
         'ip_client'
     ];

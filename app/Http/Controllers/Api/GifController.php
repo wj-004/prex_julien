@@ -32,6 +32,7 @@ class GifController extends Controller
 
     public function addBookmark(BookmarkRequest $request): ?JsonResponse
     {
+        dd($request);
         return $this->gifService->addBookmark($request);
     }
 }

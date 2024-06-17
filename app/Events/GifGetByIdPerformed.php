@@ -23,7 +23,8 @@ class GifGetByIdPerformed
     public function __construct(
         public GifDTO $gifResponseDTO,
         public Request $request,
-        public string $gif_id
+        public string $gif_id,
+        public int $statusHTTP
     ) {
         //
     }

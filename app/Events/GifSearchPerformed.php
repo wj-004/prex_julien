@@ -7,7 +7,6 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Psr\Http\Message\ResponseInterface;
 
 class GifSearchPerformed
 {
@@ -18,7 +17,8 @@ class GifSearchPerformed
      */
     public function __construct(
         public array $gifResponseDTO,
-        public SearchRequestDTO $requestDTO
+        public SearchRequestDTO $requestDTO,
+        public int $statusHTTP
     ) {
     }
 

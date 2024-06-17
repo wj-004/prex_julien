@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('api_service_type_id');
             $table->json('request_data');
-            $table->integer('response_status');
+            $table->integer('response_http');
             $table->json('response_data')->nullable();
             $table->string('ip_client');
             $table->timestamps();

@@ -53,10 +53,11 @@ class GifService
             $requestDTO = new SearchRequestDTO($request);
 
             $responseAPI = $this->prepareSuccessResponse($gifResponseDTO);
-            $responseHTTP = 200;
+            $responseHTTP = $response->getStatusCode();
         } catch (RequestException $e) {
             $responseAPI = $this->prepareErrorResponse($e);
-            $responseHTTP = 500;
+            $responseHTTP = $e->getCode();
+            $gifResponseDTO = new GifDTO('', '', '', '', '');
         }
 
         GifSearchPerformed::dispatch($gifResponseDTO ?? null, $requestDTO ?? null, $responseHTTP);
@@ -83,32 +84,33 @@ class GifService
             ]);
 
             $responseBody = json_decode($response->getBody(), true);
+
             $gifResponseDTO = $this->createGifDTO($responseBody['data']);
 
-            GifGetByIdPerformed::dispatch($gifResponseDTO, $request, $gifID);
+            $responseAPI = $this->prepareSuccessResponse($gifResponseDTO);
+            $responseHTTP = $response->getStatusCode();
 
 
-            return response()->json([
-                "status"      => true,
-                "message"     => "GIF found!",
-                "gifResponse" => $gifResponseDTO
-            ]);
         } catch (RequestException $e) {
-            return response()->json([
-                "status"  => false,
-                "message" => "Error retrieving the GIF",
-                "error"   => $e->getMessage()
-            ], 500);
+            $responseAPI = $this->prepareErrorResponse($e);
+            $responseHTTP = $e->getCode();
+            $gifResponseDTO = new GifDTO('', '', '', '', '');
         }
+
+        GifGetByIdPerformed::dispatch($gifResponseDTO, $request, $gifID,$responseHTTP);
+        return response()->json($responseAPI, $responseHTTP);
+
+
+
     }
 
     public function addBookmark(BookmarkRequest $request): JsonResponse
     {
-
+       
         try {
 
             BookmarkGif::create([
-                'user_id' => Auth::id(),
+                'user_id' => $request->user_id,
                 'gif_id'  => $request->id,
                 'alias'   => $request->alias,
             ]);
@@ -144,6 +146,7 @@ class GifService
 
     private function createGifDTO($gifData)
     {
+
         return GifDTO::from([
             'id'    => $gifData['id'],
             'type'  => $gifData['type'],

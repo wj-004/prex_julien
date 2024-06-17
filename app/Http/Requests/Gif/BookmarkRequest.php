@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Gif;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\RegisterUser;
 
 class BookmarkRequest extends FormRequest
 {
@@ -22,9 +23,9 @@ class BookmarkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'   => 'required|numeric',
-            'gif_id'    => 'required',
-            'alias'     => 'required',
+            'USER_ID'   => ['required', 'numeric', new RegisterUser],
+            'GIF_ID'    => 'required',
+            'ALIAS'     => 'required',
         ];
     }
 }

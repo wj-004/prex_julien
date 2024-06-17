@@ -8,8 +8,7 @@ class LogGifSearch extends LogGifBase
 {
     protected function prepareRequestData(object $event): array
     {
-        $requestData = clone $event->requestDTO;
-        unset($requestData->ip_client);
+        $requestData = $event->requestDTO;
         return (array) $requestData;
     }
 
