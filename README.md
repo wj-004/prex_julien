@@ -101,6 +101,12 @@ sail artisan passport:install
 
 ## Documentación de Servicios
 
+
+## Casos de Uso
+<img src="./zzz_documents/casos_de_uso.png"/>
+
+
+
 ### Buscar GIFs
 
 |ENDPOINT: | /api/gifs/search |
@@ -521,7 +527,7 @@ sequenceDiagram
 
 
 ## Diagrama Entidad Relación
-<img src="./zzz_documents/DER/DER.png"/>
+<img src="./zzz_documents/DER.png"/>
 
 
 

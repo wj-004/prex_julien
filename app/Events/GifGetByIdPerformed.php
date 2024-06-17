@@ -3,15 +3,11 @@
 namespace App\Events;
 
 use App\Data\Gif\GifDTO;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
-use Psr\Http\Message\ResponseInterface;
 
 class GifGetByIdPerformed
 {

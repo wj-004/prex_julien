@@ -89,34 +89,31 @@ class GifService
 
             $responseAPI = $this->prepareSuccessResponse($gifResponseDTO);
             $responseHTTP = $response->getStatusCode();
-
-
         } catch (RequestException $e) {
             $responseAPI = $this->prepareErrorResponse($e);
             $responseHTTP = $e->getCode();
             $gifResponseDTO = new GifDTO('', '', '', '', '');
         }
 
-        GifGetByIdPerformed::dispatch($gifResponseDTO, $request, $gifID,$responseHTTP);
+        GifGetByIdPerformed::dispatch($gifResponseDTO, $request, $gifID, $responseHTTP);
         return response()->json($responseAPI, $responseHTTP);
-
-
-
     }
 
     public function addBookmark(BookmarkRequest $request): JsonResponse
     {
-       
+
         try {
 
+            $responseHTTP = 500;
+
             BookmarkGif::create([
-                'user_id' => $request->user_id,
-                'gif_id'  => $request->id,
-                'alias'   => $request->alias,
+                'user_id' => $request->input('USER_ID'),
+                'gif_id'  => $request->input('GIF_ID'),
+                'alias'   => $request->input('ALIAS'),
             ]);
 
 
-            GifBookmarked::dispatch($request);
+            GifBookmarked::dispatch($request, $responseHTTP);
 
 
             return response()->json([

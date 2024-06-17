@@ -25,7 +25,7 @@ abstract class LogGifBase
             'api_service_type_id' => $apiServiceTypeId,
             'request_data' => $requestData,
             'response_http' => $event->statusHTTP,
-            'response_data' => $event->gifResponseDTO,
+            'response_data' => $event->gifResponseDTO ?? null,
             'ip_client' => $this->getClientIp($event),
         ]);
     }

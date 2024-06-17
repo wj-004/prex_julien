@@ -11,13 +11,10 @@ class BookmarkGif extends Model
 
     protected $table = 'bookmark_gifs';
 
-    protected $fillable = [
-        'user_id',
-        'gif_id',
-        'alias'
-    ];
+    protected $fillable = ['user_id', 'gif_id', 'alias'];
 
-    function user()  {
+    function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 }

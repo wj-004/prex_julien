@@ -8,8 +8,7 @@ class LogGifBookmarked extends LogGifBase
 {
     protected function prepareRequestData(object $event): array
     {
-        $requestData = $event->requestDTO;
-        return (array) $requestData;
+        return (array) $event->request->input();
     }
 
     protected function getApiServiceTypeId(): int
